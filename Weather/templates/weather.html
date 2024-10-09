@@ -1,0 +1,55 @@
+<!-- weather.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="center">
+      <h1>Current Weather in {{ weather.city }}, {{ weather.country }}</h1>
+    </div>
+    <div class="container">
+      <p>{{ weather.day }}, {{ weather.date }}</p>
+      <div class="weather-info">
+        <p>Temperature: {{ weather.temperature }}°F</p>
+        <p>Description: {{ weather.description }}</p>
+        <p>Wind Speed: {{ weather.wind_speed }} m/s</p>
+        <p>Pressure: {{ weather.pressure }} hPa</p>
+        <p>Humidity: {{ weather.humidity }}%</p>
+        <p>Sunrise: {{ weather.sunrise }}</p>
+        <p>Sunset: {{ weather.sunset }}</p>
+      </div>
+      <img
+        src="http://openweathermap.org/img/wn/{{ weather.icon }}.png"
+        alt="Weather Icon"
+      />
+    </div>
+    <div class="container">
+      <h2>Weekly Forecast</h2>
+      <div class="forecast">
+        {% for forecast_group in weekly_forecast %}
+        <div class="forecast-group">
+          <h3>{{ forecast_group.day }}, {{ forecast_group.date }}</h3>
+          <div class="forecast-item">
+            <p>Temperature: {{ forecast_group.temperature }}°F</p>
+            <p>Humidity: {{ forecast_group.humidity }}%</p>
+            <p>Wind Speed: {{ forecast_group.wind_speed }} m/s</p>
+            <p>Description: {{ forecast_group.description }}</p>
+          </div>
+          <!-- {% for forecast in forecast_group.forecasts %}
+          <div class="forecast-item">
+            <img
+              src="http://openweathermap.org/img/wn/{{ forecast.icon }}.png"
+              alt="Weather Icon"
+            />
+          </div>
+          {% endfor %} -->
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
